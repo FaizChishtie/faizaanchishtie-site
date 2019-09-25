@@ -50,12 +50,8 @@ const FooterSpooch = styled("img")`
 
 const Footer = () => (
     <FooterContainer>
-        <Link to="/">
-            <Logo />
-        </Link>
         <FooterAuthor href="https://marguerite.io">
-            © 2019 — Designed & developed by Marguerite Roth
-            <FooterSpooch className="FooterSpooch" src={spooch} />
+            © 2019 — Faizaan Chishtie
         </FooterAuthor>
     </FooterContainer>
 )

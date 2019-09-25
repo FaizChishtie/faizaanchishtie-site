@@ -1,9 +1,9 @@
 {
   "name": "gatsby-prismic-starter-prist",
   "private": true,
-  "description": "A starter powered by Gatsby and Prismic to showcase portfolios and blogs.",
+  "description": "Faizaan Chishtie's portfolio site.",
   "version": "0.1.0",
-  "author": "Marguerite Roth | marguerite.io | marguerite.roth@gmail.com",
+  "author": "Faizaan Chishtie | faizaanchishtie.com |faizchishtie@gmail.com",
   "dependencies": {
     "@emotion/core": "^10.0.10",
     "@emotion/styled": "^10.0.12",
@@ -57,7 +57,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/margueriteroth/gatsby-prismic-starter-prist"
+    "url": "https://https://github.com/FaizChishtie/faizaanchishtie-site"
   },
   "bugs": {
     "url": "https://github.com/gatsbyjs/gatsby/issues"
