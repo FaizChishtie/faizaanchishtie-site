@@ -3,7 +3,6 @@ import { Link } from "gatsby";
 import styled from "@emotion/styled";
 import colors from "styles/colors";
 import Logo from "components/_ui/Logo";
-import spooch from "images/oscar-icon.png"
 
 const FooterContainer = styled("div")`
     padding-top: 3.75em;
@@ -50,7 +49,7 @@ const FooterSpooch = styled("img")`
 
 const Footer = () => (
     <FooterContainer>
-        <FooterAuthor href="https://marguerite.io">
+        <FooterAuthor href="https://faizaanchishtie.com">
             © 2019 — Faizaan Chishtie
         </FooterAuthor>
     </FooterContainer>
