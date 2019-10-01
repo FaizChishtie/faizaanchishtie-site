@@ -1,6 +1,6 @@
 module.exports = {
   siteMetadata: {
-    title: `Faizaan Chishtie | Gatsby & Prismic Starter`,
+    title: `Faizaan Chishtie`,
         description: `Faizaan's portfolio website.`,
     author: `Faizaan Chishtie | faizaan.io`,
   },
@@ -46,7 +46,7 @@ module.exports = {
     {
         resolve: `gatsby-plugin-google-analytics`,
         options: {
-            trackingId: "YOUR_GOOGLE_ANALYTICS_TRACKING_ID",
+            trackingId: "UA-149277920-1",
             head: true,
         },
     },
