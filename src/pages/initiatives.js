@@ -3,35 +3,18 @@ import PropTypes from "prop-types";
 import Helmet from "react-helmet";
 import { graphql } from "gatsby";
 import styled from "@emotion/styled";
-import dimensions from "styles/dimensions";
 import Layout from "components/Layout";
-import PostCard from "components/PostCard";
+import ProjectCard from "components/ProjectCard";
 
-const BlogTitle = styled("h1")`
+const WorkTitle = styled("h1")`
     margin-bottom: 1em;
 `
 
-const BlogGrid = styled("div")`
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-gap: 2.5em;
-
-    @media(max-width: 1050px) {
-        grid-template-columns: repeat(2, 1fr);
-        grid-gap: 1.5em;
-    }
-
-    @media(max-width: ${dimensions.maxwidthMobile}px) {
-        grid-template-columns: 1fr;
-        grid-gap: 2.5em;
-    }
-`
-
-const Blog = ({ posts, meta }) => (
+const Initiatives = ({ initiatives, meta }) => (
     <>
         <Helmet
-            title={`Blog | Prist, Gatsby & Prismic Starter`}
-            titleTemplate={`%s | Blog | Prist, Gatsby & Prismic Starter`}
+            title={`Initiatives | Faizaan Chishtie's Initiatives`}
+            titleTemplate={`%s | Initiatives | Faizaan Chishtie's Initiatives`}
             meta={[
                 {
                     name: `description`,
@@ -39,7 +22,7 @@ const Blog = ({ posts, meta }) => (
                 },
                 {
                     property: `og:title`,
-                    content: `Blog | Prist, Gatsby & Prismic Starter`,
+                    content: `Initiatives | Faizaan Chishtie's Initiatives`,
                 },
                 {
                     property: `og:description`,
@@ -68,53 +51,50 @@ const Blog = ({ posts, meta }) => (
             ].concat(meta)}
         />
         <Layout>
-            <BlogTitle>
-                Blog
-            </BlogTitle>
-            <BlogGrid>
-                {posts.map((post, i) => (
-                    <PostCard
+            <WorkTitle>
+                Initiatives
+            </WorkTitle>
+            <>
+                {initiatives.map((initiative, i) => (
+                    <ProjectCard
                         key={i}
-                        author={post.node.post_author}
-                        category={post.node.post_category}
-                        title={post.node.post_title}
-                        date={post.node.post_date}
-                        description={post.node.post_preview_description}
-                        uid={post.node._meta.uid}
+                        category={initiative.node.initiative_category}
+                        title={initiative.node.initiative_title}
+                        description={initiative.node.initiative_preview_description}
+                        thumbnail={initiative.node.initiative_preview_thumbnail}
+                        uid={initiative.node._meta.uid}
                     />
                 ))}
-            </BlogGrid>
+            </>
         </Layout>
     </>
 );
 
 export default ({ data }) => {
-    const posts = data.prismic.allPosts.edges;
+    const initiatives = data.prismic.allInitiatives.edges;
     const meta = data.site.siteMetadata;
-    if (!posts) return null;
+    if (!initiatives) return null;
 
     return (
-        <Blog posts={posts} meta={meta}/>
+        <Initiatives initiatives={initiatives} meta={meta}/>
     )
 }
 
-Blog.propTypes = {
-    posts: PropTypes.array.isRequired,
-    meta: PropTypes.object.isRequired,
+Initiatives.propTypes = {
+    initiatives: PropTypes.array.isRequired,
 };
-
 
 export const query = graphql`
     {
         prismic {
-            allPosts(sortBy: post_date_DESC) {
+            allInitiatives {
                 edges {
                     node {
-                        post_title
-                        post_date
-                        post_category
-                        post_preview_description
-                        post_author
+                        initiative_title
+                        initiative_preview_description
+                        initiative_preview_thumbnail
+                        initiative_category
+                        initiative_post_date
                         _meta {
                             uid
                         }

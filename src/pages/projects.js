@@ -3,18 +3,35 @@ import PropTypes from "prop-types";
 import Helmet from "react-helmet";
 import { graphql } from "gatsby";
 import styled from "@emotion/styled";
+import dimensions from "styles/dimensions";
 import Layout from "components/Layout";
-import ProjectCard from "components/ProjectCard";
+import PostCard from "components/PostCard";
 
-const WorkTitle = styled("h1")`
+const BlogTitle = styled("h1")`
     margin-bottom: 1em;
 `
 
-const Work = ({ projects, meta }) => (
+const BlogGrid = styled("div")`
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 2.5em;
+
+    @media(max-width: 1050px) {
+        grid-template-columns: repeat(2, 1fr);
+        grid-gap: 1.5em;
+    }
+
+    @media(max-width: ${dimensions.maxwidthMobile}px) {
+        grid-template-columns: 1fr;
+        grid-gap: 2.5em;
+    }
+`
+
+const Blog = ({ posts, meta }) => (
     <>
         <Helmet
-            title={`Work | Faizaan Chishtie's Work`}
-            titleTemplate={`%s | Work | Faizaan Chishtie's Work`}
+            title={`Projects`}
+            titleTemplate={`%s | Projects | Faizaan Chishtie's Projects`}
             meta={[
                 {
                     name: `description`,
@@ -22,7 +39,7 @@ const Work = ({ projects, meta }) => (
                 },
                 {
                     property: `og:title`,
-                    content: `Work | Faizaan Chishtie's Work`,
+                    content: `Projects | Faizaan Chishtie's Projects`,
                 },
                 {
                     property: `og:description`,
@@ -51,50 +68,53 @@ const Work = ({ projects, meta }) => (
             ].concat(meta)}
         />
         <Layout>
-            <WorkTitle>
-                Work
-            </WorkTitle>
-            <>
-                {projects.map((project, i) => (
-                    <ProjectCard
+            <BlogTitle>
+                Blog
+            </BlogTitle>
+            <BlogGrid>
+                {posts.map((post, i) => (
+                    <PostCard
                         key={i}
-                        category={project.node.project_category}
-                        title={project.node.project_title}
-                        description={project.node.project_preview_description}
-                        thumbnail={project.node.project_preview_thumbnail}
-                        uid={project.node._meta.uid}
+                        author={post.node.post_author}
+                        category={post.node.post_category}
+                        title={post.node.post_title}
+                        date={post.node.post_date}
+                        description={post.node.post_preview_description}
+                        uid={post.node._meta.uid}
                     />
                 ))}
-            </>
+            </BlogGrid>
         </Layout>
     </>
 );
 
 export default ({ data }) => {
-    const projects = data.prismic.allProjects.edges;
+    const posts = data.prismic.allPosts.edges;
     const meta = data.site.siteMetadata;
-    if (!projects) return null;
+    if (!posts) return null;
 
     return (
-        <Work projects={projects} meta={meta}/>
+        <Blog posts={posts} meta={meta}/>
     )
 }
 
-Work.propTypes = {
-    projects: PropTypes.array.isRequired,
+Blog.propTypes = {
+    posts: PropTypes.array.isRequired,
+    meta: PropTypes.object.isRequired,
 };
+
 
 export const query = graphql`
     {
         prismic {
-            allProjects {
+            allPosts(sortBy: post_date_DESC) {
                 edges {
                     node {
-                        project_title
-                        project_preview_description
-                        project_preview_thumbnail
-                        project_category
-                        project_post_date
+                        post_title
+                        post_date
+                        post_category
+                        post_preview_description
+                        post_author
                         _meta {
                             uid
                         }

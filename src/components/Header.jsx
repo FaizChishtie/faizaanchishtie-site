@@ -7,7 +7,15 @@ import Logo from "components/_ui/Logo";
 
 const HeaderContainer = styled("div")`
     padding-top: 3.75em;
-    padding-bottom: 3em;
+    padding-bottom: 2em;
+
+    @media(max-width: ${dimensions.maxwidthTablet}px) {
+        padding-bottom: 1.5em;
+    }
+
+    @media(max-width: ${dimensions.maxwidthMobile}px) {
+        padding-bottom: 0.0001em;
+    }
 `
 
 const HeaderContent = styled("div")`
@@ -17,18 +25,18 @@ const HeaderContent = styled("div")`
 
 const HeaderLinks = styled("div")`
     display: grid;
-    grid-template-columns: repeat(2, auto);
-    grid-gap: 7em;
+    grid-template-columns: repeat(3, auto);
+    grid-gap: 1.5em;
     justify-content: flex-end;
     width: 100%;
     max-width: 200px;
 
     @media(max-width: ${dimensions.maxwidthTablet}px) {
-        grid-gap: 5.5em;
+        grid-gap: 1.5em;
     }
 
     @media(max-width: ${dimensions.maxwidthMobile}px) {
-        grid-gap: 2.5em;
+        grid-gap: 0.5em;
     }
 
     a {
@@ -86,8 +94,13 @@ const Header = () => (
                 </Link>
                 <Link
                     activeClassName="Link--is-active"
-                    to="/blog">
-                    Blog
+                    to="/projects">
+                    Projects
+                </Link>
+                <Link
+                    activeClassName="Link--is-active"
+                    to="/initiatives">
+                    Initiatives
                 </Link>
             </HeaderLinks>
         </HeaderContent>
