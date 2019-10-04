@@ -4,7 +4,7 @@ import Helmet from "react-helmet";
 import { graphql } from "gatsby";
 import styled from "@emotion/styled";
 import Layout from "components/Layout";
-import ProjectCard from "components/ProjectCard";
+import InitiativeCard from "components/InitiativeCard";
 
 const WorkTitle = styled("h1")`
     margin-bottom: 1em;
@@ -56,7 +56,7 @@ const Initiatives = ({ initiatives, meta }) => (
             </WorkTitle>
             <>
                 {initiatives.map((initiative, i) => (
-                    <ProjectCard
+                    <InitiativeCard
                         key={i}
                         category={initiative.node.initiative_category}
                         title={initiative.node.initiative_title}

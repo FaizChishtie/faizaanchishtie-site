@@ -158,7 +158,7 @@ const InitiativeCardImageContainer = styled("div")`
 `
 
 const InitiativeCard = ({ category, title, description, thumbnail, uid}) => (
-    <InitiativeCardContainer to={`/work/${uid}`}>
+    <InitiativeCardContainer to={`/initiatives/${uid}`}>
         <InitiativeCardContent className="InitiativeCardContent">
             <InitiativeCardCategory>
                 {category[0].text}

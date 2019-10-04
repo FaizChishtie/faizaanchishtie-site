@@ -50,11 +50,11 @@ const WorkLink = styled(Link)`
 `
 
 
-const Initiative = ({ Initiative, meta }) => {
+const Initiative = ({ initiative, meta }) => {
     return (
         <>
             <Helmet
-                title={`${Initiative.Initiative_title[0].text} | Prist, Gatsby & Prismic Starter`}
+                title={`${initiative.initiative_title[0].text}`}
                 titleTemplate={`%s | ${meta.title}`}
                 meta={[
                     {
@@ -63,7 +63,7 @@ const Initiative = ({ Initiative, meta }) => {
                     },
                     {
                         property: `og:title`,
-                        content: `${Initiative.Initiative_title[0].text} | Prist, Gatsby & Prismic Starter`,
+                        content: `${initiative.initiative_title[0].text}`,
                     },
                     {
                         property: `og:description`,
@@ -93,18 +93,18 @@ const Initiative = ({ Initiative, meta }) => {
             />
             <Layout>
                 <InitiativeTitle>
-                    {RichText.render(Initiative.Initiative_title)}
+                    {RichText.render(initiative.initiative_title)}
                 </InitiativeTitle>
-                {Initiative.Initiative_hero_image && (
+                {initiative.initiative_hero_image && (
                     <InitiativeHeroContainer>
-                        <img src={Initiative.Initiative_hero_image.url} alt="bees" />
+                        <img src={initiative.initiative_hero_image.url} alt="bees" />
                     </InitiativeHeroContainer>
                 )}
                 <InitiativeBody>
-                    {RichText.render(Initiative.Initiative_description)}
-                    <WorkLink to={"/work"}>
+                    {RichText.render(initiative.initiative_description)}
+                    <WorkLink to={"/initiatives"}>
                         <Button className="Button--secondary">
-                            See other work
+                            See other initiatives
                         </Button>
                     </WorkLink>
                 </InitiativeBody>

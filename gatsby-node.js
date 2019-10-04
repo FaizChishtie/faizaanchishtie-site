@@ -90,9 +90,9 @@ exports.createPages = async ({ graphql, actions }) => {
 
     initiativesList.forEach(edge => {
         createPage({
-            type: 'Initiative',
+            type: 'Project',
             match:'/initiatives/:uid',
-            path:`/initiatives/${edge.node_meta.uid}`,
+            path:`/initiatives/${edge.node._meta.uid}`,
             component: initiativeTemplate,
             context: {
                 uid: edge.node._meta.uid,
