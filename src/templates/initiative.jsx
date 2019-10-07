@@ -117,7 +117,7 @@ export default ({ data }) => {
     const InitiativeContent = data.prismic.allInitiatives.edges[0].node;
     const meta = data.site.siteMetadata;
     return (
-        <Initiative Initiative={InitiativeContent} meta={meta}/>
+        <Initiative initiative={InitiativeContent} meta={meta}/>
     )
 }
 

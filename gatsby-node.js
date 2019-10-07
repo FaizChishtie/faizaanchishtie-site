@@ -77,7 +77,7 @@ exports.createPages = async ({ graphql, actions }) => {
     projectsList.forEach(edge => {
         // The uid you assigned in Prismic is the slug!
         createPage({
-            type: 'Project',
+            type: 'Work',
             match: '/work/:uid',
             path: `/work/${edge.node._meta.uid}`,
             component: projectTemplate,
@@ -90,7 +90,7 @@ exports.createPages = async ({ graphql, actions }) => {
 
     initiativesList.forEach(edge => {
         createPage({
-            type: 'Project',
+            type: 'Initiative',
             match:'/initiatives/:uid',
             path:`/initiatives/${edge.node._meta.uid}`,
             component: initiativeTemplate,
@@ -103,8 +103,8 @@ exports.createPages = async ({ graphql, actions }) => {
     postsList.forEach(edge => {
         createPage({
             type: 'Project',
-            match: '/blog/:uid',
-            path: `/blog/${edge.node._meta.uid}`,
+            match: '/projects/:uid',
+            path: `/projects/${edge.node._meta.uid}`,
             component: postTemplate,
             context: {
                 uid: edge.node._meta.uid,
