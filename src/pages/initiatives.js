@@ -4,17 +4,17 @@ import Helmet from "react-helmet";
 import { graphql } from "gatsby";
 import styled from "@emotion/styled";
 import Layout from "components/Layout";
-import ProjectCard from "components/ProjectCard";
+import InitiativeCard from "components/InitiativeCard";
 
 const WorkTitle = styled("h1")`
     margin-bottom: 1em;
 `
 
-const Work = ({ projects, meta }) => (
+const Initiatives = ({ initiatives, meta }) => (
     <>
         <Helmet
-            title={`Work | Faizaan Chishtie's Work`}
-            titleTemplate={`%s | Work | Faizaan Chishtie's Work`}
+            title={`Initiatives | Faizaan Chishtie's Initiatives`}
+            titleTemplate={`%s | Initiatives | Faizaan Chishtie's Initiatives`}
             meta={[
                 {
                     name: `description`,
@@ -22,7 +22,7 @@ const Work = ({ projects, meta }) => (
                 },
                 {
                     property: `og:title`,
-                    content: `Work | Faizaan Chishtie's Work`,
+                    content: `Initiatives | Faizaan Chishtie's Initiatives`,
                 },
                 {
                     property: `og:description`,
@@ -52,17 +52,17 @@ const Work = ({ projects, meta }) => (
         />
         <Layout>
             <WorkTitle>
-                Work
+                Initiatives
             </WorkTitle>
             <>
-                {projects.map((project, i) => (
-                    <ProjectCard
+                {initiatives.map((initiative, i) => (
+                    <InitiativeCard
                         key={i}
-                        category={project.node.project_category}
-                        title={project.node.project_title}
-                        description={project.node.project_preview_description}
-                        thumbnail={project.node.project_preview_thumbnail}
-                        uid={project.node._meta.uid}
+                        category={initiative.node.initiative_category}
+                        title={initiative.node.initiative_title}
+                        description={initiative.node.initiative_preview_description}
+                        thumbnail={initiative.node.initiative_preview_thumbnail}
+                        uid={initiative.node._meta.uid}
                     />
                 ))}
             </>
@@ -71,30 +71,30 @@ const Work = ({ projects, meta }) => (
 );
 
 export default ({ data }) => {
-    const projects = data.prismic.allProjects.edges;
+    const initiatives = data.prismic.allInitiatives.edges;
     const meta = data.site.siteMetadata;
-    if (!projects) return null;
+    if (!initiatives) return null;
 
     return (
-        <Work projects={projects} meta={meta}/>
+        <Initiatives initiatives={initiatives} meta={meta}/>
     )
 }
 
-Work.propTypes = {
-    projects: PropTypes.array.isRequired,
+Initiatives.propTypes = {
+    initiatives: PropTypes.array.isRequired,
 };
 
 export const query = graphql`
     {
         prismic {
-            allProjects {
+            allInitiatives {
                 edges {
                     node {
-                        project_title
-                        project_preview_description
-                        project_preview_thumbnail
-                        project_category
-                        project_post_date
+                        initiative_title
+                        initiative_preview_description
+                        initiative_preview_thumbnail
+                        initiative_category
+                        initiative_post_date
                         _meta {
                             uid
                         }

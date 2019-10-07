@@ -30,8 +30,8 @@ const BlogGrid = styled("div")`
 const Blog = ({ posts, meta }) => (
     <>
         <Helmet
-            title={`Blog | Prist, Gatsby & Prismic Starter`}
-            titleTemplate={`%s | Blog | Prist, Gatsby & Prismic Starter`}
+            title={`Projects`}
+            titleTemplate={`%s | Projects | Faizaan Chishtie's Projects`}
             meta={[
                 {
                     name: `description`,
@@ -39,7 +39,7 @@ const Blog = ({ posts, meta }) => (
                 },
                 {
                     property: `og:title`,
-                    content: `Blog | Prist, Gatsby & Prismic Starter`,
+                    content: `Projects | Faizaan Chishtie's Projects`,
                 },
                 {
                     property: `og:description`,
@@ -69,7 +69,7 @@ const Blog = ({ posts, meta }) => (
         />
         <Layout>
             <BlogTitle>
-                Blog
+                Projects
             </BlogTitle>
             <BlogGrid>
                 {posts.map((post, i) => (

@@ -5,9 +5,16 @@
 exports.linkResolver = function linkResolver(doc) {
     // Route for blog posts
     if (doc.type === 'Post') {
-        return '/blog/' + doc.uid;
+        return '/projects/' + doc.uid;
     }
 
-    // Homepage route fallback
+    if (doc.type === 'Work') {
+        return '/work/' + doc.uid;
+    }
+
+    if (doc.type === 'Initiative') {
+        return '/initiatives/' + doc.uid;
+    }
+
     return '/';
 }

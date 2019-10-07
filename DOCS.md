@@ -243,6 +243,12 @@ In the right panel, select *JSON editor* and paste the following:
         "label" : "project uid"
       }
     },
+    "project_type" : {
+      "type" : "StructuredText",
+      "config" : {
+        "label" : "project type"
+      }
+    },
     "project_category" : {
       "type" : "StructuredText",
       "config" : {
@@ -286,6 +292,77 @@ In the right panel, select *JSON editor* and paste the following:
       "type" : "Date",
       "config" : {
         "label" : "project post date"
+      }
+    }
+  }
+}
+```
+
+*** Initiative *** (Repeatable)
+```{
+  "Main" : {
+    "initiative_title" : {
+      "type" : "StructuredText",
+      "config" : {
+        "single" : "heading1",
+        "label" : "initiative title"
+      }
+    },
+    "uid" : {
+      "type" : "UID",
+      "config" : {
+        "label" : "initiative uid"
+      }
+    },
+    "initiative_type" : {
+      "type" : "StructuredText",
+      "config" : {
+        "label" : "initiative type"
+      }
+    },
+    "initiative_category" : {
+      "type" : "StructuredText",
+      "config" : {
+        "single" : "heading5",
+        "label" : "project category"
+      }
+    },
+    "initiative_preview_description" : {
+      "type" : "StructuredText",
+      "config" : {
+        "multi" : "paragraph, strong, em, hyperlink",
+        "allowTargetBlank" : true,
+        "label" : "inititative preview description"
+      }
+    },
+    "initiative_preview_thumbnail" : {
+      "type" : "Image",
+      "config" : {
+        "constraint" : { },
+        "thumbnails" : [ ],
+        "label" : "initiative preview thumbnail"
+      }
+    },
+    "initiative_hero_image" : {
+      "type" : "Image",
+      "config" : {
+        "constraint" : { },
+        "thumbnails" : [ ],
+        "label" : "initiative hero image"
+      }
+    },
+    "initiative_description" : {
+      "type" : "StructuredText",
+      "config" : {
+        "multi" : "paragraph, preformatted, heading1, heading2, heading3, heading4, heading5, heading6, strong, em, hyperlink, image, embed, list-item, o-list-item, o-list-item",
+        "allowTargetBlank" : true,
+        "label" : "initiative description"
+      }
+    },
+    "initiative_post_date" : {
+      "type" : "Date",
+      "config" : {
+        "label" : "initiative post date"
       }
     }
   }

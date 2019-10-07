@@ -10,6 +10,7 @@ import Button from "components/_ui/Button";
 import About from "components/About";
 import Layout from "components/Layout";
 import ProjectCard from "components/ProjectCard";
+import InitiativeCard from "components/InitiativeCard";
 
 const Hero = styled("div")`
     padding-top: 2.5em;
@@ -93,7 +94,7 @@ const WorkAction = styled(Link)`
     }
 `
 
-const RenderBody = ({ home, projects, meta }) => (
+const RenderBody = ({ home, projects, meta, initiatives }) => (
     <>
         <Helmet
             title={meta.title}
@@ -160,6 +161,21 @@ const RenderBody = ({ home, projects, meta }) => (
             </WorkAction>
         </Section>
         <Section>
+            {initiatives.map((initiative, i) => (
+                    <InitiativeCard
+                        key={i}
+                        category={initiative.node.initiative_category}
+                        title={initiative.node.initiative_title}
+                        description={initiative.node.initiative_preview_description}
+                        thumbnail={initiative.node.initiative_preview_thumbnail}
+                        uid={initiative.node._meta.uid}
+                    />
+            ))}
+            <WorkAction to={"/initiatives"}>
+                See more initiatives <span>&#8594;</span>
+            </WorkAction>
+        </Section>
+        <Section>
             {RichText.render(home.about_title)}
             <About
                 bio={home.about_bio}
@@ -173,13 +189,14 @@ export default ({ data }) => {
     //Required check for no data being returned
     const doc = data.prismic.allHomepages.edges.slice(0, 1).pop();
     const projects = data.prismic.allProjects.edges;
+    const initiatives = data.prismic.allInitiatives.edges;
     const meta = data.site.siteMetadata;
 
     if (!doc || !projects) return null;
 
     return (
         <Layout>
-            <RenderBody home={doc.node} projects={projects} meta={meta}/>
+            <RenderBody home={doc.node} projects={projects} meta={meta} initiatives={initiatives}/>
         </Layout>
     )
 }
@@ -221,6 +238,20 @@ export const query = graphql`
                         project_preview_thumbnail
                         project_category
                         project_post_date
+                        _meta {
+                            uid
+                        }
+                    }
+                }
+            }
+            allInitiatives {
+                edges {
+                    node {
+                        initiative_title
+                        initiative_preview_description
+                        initiative_preview_thumbnail
+                        initiative_category
+                        initiative_post_date
                         _meta {
                             uid
                         }

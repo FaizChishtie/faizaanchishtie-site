@@ -8,7 +8,7 @@ import { RichText } from "prismic-reactjs";
 import Button from "components/_ui/Button";
 import Layout from "components/Layout";
 
-const ProjectHeroContainer = styled("div")`
+const InitiativeHeroContainer = styled("div")`
     background: ${colors.grey200};
     display: flex;
     justify-content: center;
@@ -23,13 +23,13 @@ const ProjectHeroContainer = styled("div")`
     }
 `
 
-const ProjectTitle = styled("div") `
+const InitiativeTitle = styled("div") `
     max-width: 550px;
     margin: 0 auto;
     text-align: center;
 `
 
-const ProjectBody = styled("div")`
+const InitiativeBody = styled("div")`
     max-width: 550px;
     margin: 0 auto;
 
@@ -50,11 +50,11 @@ const WorkLink = styled(Link)`
 `
 
 
-const Project = ({ project, meta }) => {
+const Initiative = ({ initiative, meta }) => {
     return (
         <>
             <Helmet
-                title={`${project.project_title[0].text} | Faizaan Chishtie's Work`}
+                title={`${initiative.initiative_title[0].text}`}
                 titleTemplate={`%s | ${meta.title}`}
                 meta={[
                     {
@@ -63,7 +63,7 @@ const Project = ({ project, meta }) => {
                     },
                     {
                         property: `og:title`,
-                        content: `${project.project_title[0].text} |  Faizaan Chishtie's Work`,
+                        content: `${initiative.initiative_title[0].text}`,
                     },
                     {
                         property: `og:description`,
@@ -92,52 +92,52 @@ const Project = ({ project, meta }) => {
                 ].concat(meta)}
             />
             <Layout>
-                <ProjectTitle>
-                    {RichText.render(project.project_title)}
-                </ProjectTitle>
-                {project.project_hero_image && (
-                    <ProjectHeroContainer>
-                        <img src={project.project_hero_image.url} alt="bees" />
-                    </ProjectHeroContainer>
+                <InitiativeTitle>
+                    {RichText.render(initiative.initiative_title)}
+                </InitiativeTitle>
+                {initiative.initiative_hero_image && (
+                    <InitiativeHeroContainer>
+                        <img src={initiative.initiative_hero_image.url} alt="bees" />
+                    </InitiativeHeroContainer>
                 )}
-                <ProjectBody>
-                    {RichText.render(project.project_description)}
-                    <WorkLink to={"/work"}>
+                <InitiativeBody>
+                    {RichText.render(initiative.initiative_description)}
+                    <WorkLink to={"/initiatives"}>
                         <Button className="Button--secondary">
-                            See other work
+                            See other initiatives
                         </Button>
                     </WorkLink>
-                </ProjectBody>
+                </InitiativeBody>
             </Layout>
         </>
     )
 }
 
 export default ({ data }) => {
-    const projectContent = data.prismic.allProjects.edges[0].node;
+    const InitiativeContent = data.prismic.allInitiatives.edges[0].node;
     const meta = data.site.siteMetadata;
     return (
-        <Project project={projectContent} meta={meta}/>
+        <Initiative initiative={InitiativeContent} meta={meta}/>
     )
 }
 
-Project.propTypes = {
-    project: PropTypes.object.isRequired,
+Initiative.propTypes = {
+    Initiative: PropTypes.object.isRequired,
 };
 
 export const query = graphql`
-    query ProjectQuery($uid: String) {
+    query InitiativeQuery($uid: String) {
         prismic {
-            allProjects(uid: $uid) {
+            allInitiatives(uid: $uid) {
                 edges {
                     node {
-                        project_title
-                        project_preview_description
-                        project_preview_thumbnail
-                        project_category
-                        project_post_date
-                        project_hero_image
-                        project_description
+                        initiative_title
+                        initiative_preview_description
+                        initiative_preview_thumbnail
+                        initiative_category
+                        initiative_post_date
+                        initiative_hero_image
+                        initiative_description
                         _meta {
                             uid
                         }
