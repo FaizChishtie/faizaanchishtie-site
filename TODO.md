@@ -1,22 +1,28 @@
-# Todo list for website
+# Priority based TODO for site
 
-## Webpages
+## P1
 * Implement EC page
-    * Clubs
-    * Initiatives
+    * <s> Clubs </s>
+    * <s> Initiatives </s>
     * Hobbies
+* Add current work
+* Fix About Me page
+* Fix routing to About Me page (hard)
+* Priority projects on homepage
+* Make TODO list a table
+* <s> Implement Resume page </s>
+
+## P2
+
+* <s> Fix bio for mobile </s>
+* <s> Add projects
+    * GitHub
+    </s>
 * Implement School page 
     * Coursework
     * Research
-* Implement Resume page
 
-## Maintenance
-
-* Fix bio for mobile
-* Add projects
-    * GitHub
-* Add current work
-
-## Optional
+## P3
 
 * Find logos for projects
+* Sorting for projects
