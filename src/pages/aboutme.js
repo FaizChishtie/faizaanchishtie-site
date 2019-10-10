@@ -2,15 +2,13 @@ import React from "react";
 import PropTypes from "prop-types";
 import Helmet from "react-helmet";
 import { RichText } from "prismic-reactjs";
-import { graphql, Link } from "gatsby";
+import { graphql } from "gatsby";
 import styled from "@emotion/styled";
 import colors from "styles/colors";
 import dimensions from "styles/dimensions";
 import Button from "components/_ui/Button";
 import About from "components/About";
 import Layout from "components/Layout";
-import ProjectCard from "components/ProjectCard";
-import InitiativeCard from "components/InitiativeCard";
 
 const Hero = styled("div")`
     padding-top: 2.5em;
@@ -64,37 +62,7 @@ const Section = styled("div")`
     }
 `
 
-const WorkAction = styled(Link)`
-    font-weight: 600;
-    text-decoration: none;
-    color: currentColor;
-    transition: all 150ms ease-in-out;
-    margin-left: auto;
-
-    @media(max-width:${dimensions.maxwidthTablet}px) {
-       margin: 0 auto;
-    }
-
-    span {
-        margin-left: 1em;
-        transform: translateX(-8px);
-        display: inline-block;
-        transition: transform 400ms ease-in-out;
-    }
-
-    &:hover {
-        color: ${colors.blue500};
-        transition: all 150ms ease-in-out;
-
-        span {
-            transform: translateX(0px);
-            opacity: 1;
-            transition: transform 150ms ease-in-out;
-        }
-    }
-`
-
-const RenderBody = ({ home, projects, meta, initiatives }) => (
+const RenderBody = ({ home, meta }) => (
     <>
         <Helmet
             title={meta.title}
@@ -134,49 +102,10 @@ const RenderBody = ({ home, projects, meta, initiatives }) => (
                 },
             ].concat(meta)}
         />
-        <Hero>
-            <>
-                {RichText.render(home.hero_title)}
-            </>
-            <a href={home.hero_button_link.url}
-               target="_blank" rel="noopener noreferrer">
-                <Button>
-                    About Me
-                </Button>
-            </a>
-        </Hero>
+        <h1>
+            About Me
+        </h1>
         <Section>
-            {projects.map((project, i) => (
-                <ProjectCard
-                    key={i}
-                    category={project.node.project_category}
-                    title={project.node.project_title}
-                    description={project.node.project_preview_description}
-                    thumbnail={project.node.project_preview_thumbnail}
-                    uid={project.node._meta.uid}
-                />
-            ))}
-            <WorkAction to={"/work"}>
-                See more work <span>&#8594;</span>
-            </WorkAction>
-        </Section>
-        <Section>
-        {initiatives.map((initiative, i) => (
-                    <InitiativeCard
-                        key={i}
-                        category={initiative.node.initiative_category}
-                        title={initiative.node.initiative_title}
-                        description={initiative.node.initiative_preview_description}
-                        thumbnail={initiative.node.initiative_preview_thumbnail}
-                        uid={initiative.node._meta.uid}
-                    />
-            ))}
-            <WorkAction to={"/initiatives"}>
-                See more initiatives <span>&#8594;</span>
-            </WorkAction>
-        </Section>
-        <Section>
-            {RichText.render(home.about_title)}
             <About
                 bio={home.about_bio}
                 socialLinks={home.about_links}
